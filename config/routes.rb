@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root 'environments#index'
   resources :environments
 
+  resources :sessions
+  get '/auth/github/callback', to: 'sessions#create'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
