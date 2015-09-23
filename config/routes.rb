@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'environments#index'
   resources :environments
+  resources :deploys
 
   resources :sessions
   get '/auth/github/callback', to: 'sessions#create'

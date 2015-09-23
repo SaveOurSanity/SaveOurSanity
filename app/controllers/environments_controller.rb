@@ -10,6 +10,8 @@ class EnvironmentsController < ApplicationController
   # GET /environments/1
   # GET /environments/1.json
   def show
+    set_environment
+    @deploy = Deploy.new(environment: @environment)
   end
 
   # GET /environments/new
@@ -71,7 +73,7 @@ class EnvironmentsController < ApplicationController
     def environment_params
       params.require(:environment).permit([
         :name,
-        :url
+        :url,
       ])
     end
 end
