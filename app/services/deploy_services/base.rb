@@ -10,7 +10,7 @@ class DeployServices::Base
   end
 
   def start
-    system "#{command} >#{log_file} 2>#{log_file}"
+    system "#{command} >#{log_file} 2>#{log_file} &"
   end
 
   protected
