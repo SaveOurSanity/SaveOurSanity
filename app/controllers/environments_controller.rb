@@ -1,5 +1,6 @@
 class EnvironmentsController < ApplicationController
   before_action :set_environment, only: [:show, :edit, :update, :destroy]
+  skip_before_action :ensure_signed_in, only: :index
 
   # GET /environments
   # GET /environments.json

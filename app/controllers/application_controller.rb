@@ -5,15 +5,22 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :signed_in?
 
+  before_action :ensure_signed_in
+
+  def ensure_signed_in
+    return if signed_in?
+    redirect_to root_path, notice: "You're not signed in!"
+  end
+
   def current_user
-    session[:user]
+    User.find_by(token: session[:user_token])
   end
 
   def current_user= set_user
-    session[:user] = set_user
+    session[:user_token] = set_user.try(:token)
   end
 
   def signed_in?
-    current_user.is_a? User
+    current_user.present?
   end
 end

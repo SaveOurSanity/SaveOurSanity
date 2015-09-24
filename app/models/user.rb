@@ -1,17 +1,17 @@
-class User
-  attr_reader :name, :avatar, :email
+class User < ActiveRecord::Base
+  validates :token, presence: true
+  validates :name, presence: true
+  validates :email, presence: true
 
-  def initialize(auth_hash: nil, email: email, name: name)
-    if email or name
-      auth_hash = { info: { nickname: name, email: email } }
-    end
-    @name = auth_hash[:info][:nickname] || name
-    @avatar = auth_hash[:info][:image]
-    @email = auth_hash[:info][:email]
+  def auth_hash=(auth_hash)
+    self.name = auth_hash[:info][:nickname]
+    self.avatar = auth_hash[:info][:image]
+    self.email = auth_hash[:info][:email]
+    self.token = auth_hash.credentials.token
   end
 
-  def avatar
-    @avatar || "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@email.downcase)}"
+  def avatar_image
+    avatar || "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@email.downcase)}"
   end
 
   def to_s

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924184637) do
+ActiveRecord::Schema.define(version: 20150924193954) do
 
   create_table "deploys", force: :cascade do |t|
     t.integer  "environment_id"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20150924184637) do
     t.datetime "updated_at",    null: false
     t.string   "url"
     t.integer  "server_status"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "token"
+    t.string   "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,11 +1,16 @@
 class SessionsController < ApplicationController
 
+  skip_before_action :ensure_signed_in
+
   def new
     redirect_to '/auth/github'
   end
 
   def create
-    @user = User.new(auth_hash: auth_hash)
+    @user = User.find_by(email: auth_hash[:info][:email])
+    @user ||= User.new
+    @user.auth_hash = auth_hash
+    @user.save!
     self.current_user = @user
     redirect_to :back, notice: "Signed in as #{current_user}"
   end
