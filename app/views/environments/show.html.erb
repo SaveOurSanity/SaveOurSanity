@@ -4,16 +4,14 @@
 <%= link_to 'Back', environments_path %>
 
 <%= form_for(@deploy) do |f| %>
-
-  author: <%= f.text_field :author %></br>
-  ruby branch: <%= f.text_field :ruby_branch_name %></br>
-  php branch: <%= f.text_field :php_branch_name %>
+  author: <%= current_user.name %></br>
+  ruby branch: <%= f.text_field :ruby_branch_name, value: @environment.deploys.last.try(:ruby_branch_name) %></br>
+  php branch: <%= f.text_field :php_branch_name, value: @environment.deploys.last.try(:php_branch_name) %>
   <%= f.hidden_field :environment_id %>
-
+  <%= f.hidden_field :author, value: current_user.name %>
   <div class="actions">
     <%= f.submit %>
   </div>
-
 <% end %>
 
 <table>
