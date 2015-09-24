@@ -5,8 +5,8 @@
 
 <%= form_for(@deploy) do |f| %>
   author: <%= current_user.name %></br>
-  ruby branch: <%= f.text_field :ruby_branch_name, value: @environment.deploys.last.try(:ruby_branch_name) %></br>
-  php branch: <%= f.text_field :php_branch_name, value: @environment.deploys.last.try(:php_branch_name) %>
+  ruby branch: <%= f.text_field :ruby_branch_name, value: @environment.last_deployed_ruby_branch %></br>
+  php branch: <%= f.text_field :php_branch_name, value: @environment.last_deployed_php_branch %>
   <%= f.hidden_field :environment_id %>
   <%= f.hidden_field :author, value: current_user.name %>
   <div class="actions">
@@ -24,9 +24,11 @@
   <tbody>
     <% @environment.deploys.each do |deploy| %>
       <tr>
+        <td><%= deploy.created_at %></td>
         <td><%= deploy.author %></td>
         <td><%= deploy.ruby_branch_name %></td>
         <td><%= deploy.php_branch_name %></td>
+        <td><%= link_to "show", deploy %></td>
       </tr>
     <% end %>
   </tbody>

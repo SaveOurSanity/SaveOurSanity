@@ -15,8 +15,8 @@
         <td><%= environment.name %></td>
         <td><%= environment.url %></td>
         <td><%= environment.server_status %></td>
-        <td>Ruby branch: <%= environment.last_deployed_ruby_branch %></td>
-        <td>PHP branch: <%= environment.last_deployed_php_branch %></td>
+        <td>Ruby branch: <%= environment.last_deployed_ruby_branch || "n/a" %></td>
+        <td>PHP branch: <%= environment.last_deployed_php_branch || "n/a" %></td>
         <td><%= link_to 'Show', environment %></td>
         <td><%= link_to 'Edit', edit_environment_path(environment) %></td>
         <td><%= link_to 'Destroy', environment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

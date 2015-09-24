@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924193954) do
+ActiveRecord::Schema.define(version: 20150924202430) do
 
   create_table "deploys", force: :cascade do |t|
     t.integer  "environment_id"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20150924193954) do
     t.datetime "updated_at",       null: false
     t.string   "ruby_branch_name"
     t.string   "php_branch_name"
-    t.string   "log_file"
   end
 
   create_table "environments", force: :cascade do |t|

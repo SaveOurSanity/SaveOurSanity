@@ -1,16 +1,13 @@
 class DeployServices::Base
 
-  attr_accessor :environment
   attr_accessor :deploy
 
-  def initialize(environment, deploy)
-    self.environment = environment
+  def initialize(deploy)
     self.deploy = deploy
-    deploy.update(log_file: log_file)
   end
 
   def start
-    system "#{command} >#{log_file} 2>#{log_file} &"
+    system "#{command} >#{deploy.log_file(platform)} 2>#{deploy.log_file(platform)} &"
   end
 
   protected
@@ -19,10 +16,11 @@ class DeployServices::Base
     raise "override this"
   end
 
-  private
-
-  def log_file
-    @log_file ||= "#{environment.name.downcase} #{Time.now.to_s}".gsub(" ", "_")
+  def platform
+    raise "override this"
   end
 
+  def environment
+    deploy.environment
+  end
 end

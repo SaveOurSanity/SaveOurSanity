@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_deploy_path(@deploy) %> |
-<%= link_to 'Back', deploys_path %>
+<%= link_to 'Back', :back %>
+
+<p><%= @deploy.log_contents(:ruby) %></p>
+<p><%= @deploy.log_contents(:php) %></p>

@@ -1,6 +1,11 @@
 class DeploysController < ApplicationController
   before_action :set_deploy, only: [:show, :edit, :update, :destroy]
 
+  # GET /deploys/1
+  # GET /deploys/1.json
+  def show
+  end
+
   # POST /deploys
   # POST /deploys.json
   def create
