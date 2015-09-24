@@ -73,7 +73,7 @@ class EnvironmentsController < ApplicationController
     def environment_params
       params.require(:environment).permit([
         :name,
-        :url,
+        :url
       ])
     end
 end

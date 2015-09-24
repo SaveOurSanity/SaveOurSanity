@@ -3,10 +3,11 @@
 <%= link_to 'Edit', edit_environment_path(@environment) %> |
 <%= link_to 'Back', environments_path %>
 
-<%= form_for(@deploy, url: {action: "create"}) do |f| %>
+<%= form_for(@deploy) do |f| %>
 
-  <%= f.text_field :author %>
-  <%= f.text_field :branch_name %>
+  author: <%= f.text_field :author %></br>
+  ruby branch: <%= f.text_field :ruby_branch_name %></br>
+  php branch: <%= f.text_field :php_branch_name %>
   <%= f.hidden_field :environment_id %>
 
   <div class="actions">
@@ -26,7 +27,8 @@
     <% @environment.deploys.each do |deploy| %>
       <tr>
         <td><%= deploy.author %></td>
-        <td><%= deploy.branch_name %></td>
+        <td><%= deploy.ruby_branch_name %></td>
+        <td><%= deploy.php_branch_name %></td>
       </tr>
     <% end %>
   </tbody>

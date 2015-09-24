@@ -28,7 +28,7 @@ class DeploysController < ApplicationController
 
     respond_to do |format|
       if @deploy.save
-        format.html { redirect_to @deploy, notice: 'Deploy was successfully created.' }
+        format.html { redirect_to @deploy.environment, notice: 'Deploy was successfully created.' }
         format.json { render :show, status: :created, location: @deploy }
       else
         format.html { render :new }
@@ -71,7 +71,9 @@ class DeploysController < ApplicationController
     def deploy_params
       params.require(:deploy).permit([
         :author,
-        :branch_name
+        :ruby_branch_name,
+        :php_branch_name,
+        :environment_id
       ])
     end
 end
